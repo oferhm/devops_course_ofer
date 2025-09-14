@@ -23,4 +23,4 @@ spec:
       volumes:
         - name: nginx-storage
           persistentVolumeClaim:
-            claimName: task-pv-claim
+            claimName: nginx-pvc
