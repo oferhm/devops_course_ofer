@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: print-date-every-minute
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: date-printer
+            image: busybox:1.28 # A lightweight image containing the 'date' command
+            command: ["/bin/sh", "-c", "date"]
+          restartPolicy: OnFailure
