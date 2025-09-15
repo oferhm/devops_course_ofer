@@ -12,4 +12,15 @@ spec:
           - name: date-printer
             image: busybox:1.28 # A lightweight image containing the 'date' command
             command: ["/bin/sh", "-c", "date"]
+            args:
+              - echo "Running CronJob with PVC...";
+                date >> /data/output.txt
+            volumeMounts:
+            - name: mypvc
+              mountPath: /data
+          volumes:
+          - name: mypvc
+            persistentVolumeClaim:
+              claimName: nginx-pvc   # <-- must exist
           restartPolicy: OnFailure
+
